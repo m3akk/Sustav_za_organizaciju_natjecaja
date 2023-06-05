@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sustav za organizaciju natjecanja</title>
+  <style>
+    /* CSS for navigation links */
+    nav {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: #333;
+    }
+    nav a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.8em 1.5em;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #444;
+    }
+    
+    /* CSS for centering title */
+    header {
+      text-align: center;
+      /* margin-top: 2em; */
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #333;
+      text-shadow: 2px 2px #fff;
+    }
+    
+    /* CSS for body content */
+    main {
+      max-width: 800px;
+      margin: 2em auto;
+      padding: 2em;
+      background-color: #f5f5f5;
+      box-shadow: 0 0 10px #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    
+    #logout {
+      display: flex;
+      align-items: center;
+      margin-top: 0px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      text-align: center;
+    }
+
+
+    #logout a {
+      margin-left: auto;
+      margin-right: 10px;
+      margin-top: 0;
+    }
+
+    #logout p {
+      margin-right: 10px;
+    } 
+
+
+    #login {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      margin-right: 10px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      text-align: center;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+
+    {% if user.is_authenticated %}
+    <div id='logout'>
+        <p>{{ user.username }}</p>
+        <a href="{% url 'logout' %}" style="text-decoration: underline;">Log out</a>
+    </div>    
+
+    {% else %}
+    <div id='login'>
+        <a href="{% url 'login' %}" style="text-decoration: underline;">Log in</a>
+    </div>    
+    {% endif %}
+
+
+    <h1>Sustav za organizaciju natjecanja</h1>
+    <nav>
+      <li><a href="/organizatori/">Organizatori</a></li>
+      <li><a href="/natjecaji/">Natjecaji</a></li>
+      <li><a href="/sudionici/">Sudionici</a></li>
+      <li><a href="/prijave/">Prijave</a></li>
+    </nav>
+</header>
+
+  
+  <main{% if request.path == '/' %} style="display: none;"{% endif %}>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

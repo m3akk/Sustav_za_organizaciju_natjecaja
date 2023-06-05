@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!-- <h1>Organizatori</h1> -->
+<table>
+  <thead style="text-align: left;">
+    <tr>
+      <th>Naziv</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for organizator in organizatori %}
+      <tr>
+        <td style="padding-right: 40px;">{{ organizator.organizator_naziv }}</td>
+        <td style="padding-right: 40px;">{{ organizator.organizator_email }}</td>
+        <td>
+          <a href="{% url 'organizator_detail' organizator.pk %}">Detail</a>
+          <a href="{% url 'organizator_update' organizator.pk %}">Update</a>
+          <a href="{% url 'organizator_delete' organizator.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{% url 'organizator_create' %}">Dodaj novog organizatora</a></p>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+
+<!-- <h1>Natjecaji</h1> -->
+
+<table>
+  <thead style="text-align: left;">
+    <tr>
+      <th>Naziv</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for natjecaj in natjecaji %}
+    <tr>
+      <td style="padding-right: 40px;">{{ natjecaj.natjecaj_naziv }}</td>
+      <td style="padding-right: 40px;">{{ natjecaj.natjecaj_datum }}</td>
+      <td>
+        <a href="{% url 'natjecaj_detail' pk=natjecaj.pk %}">Detail</a>
+        <a href="{% url 'natjecaj_update' pk=natjecaj.pk %}">Update</a>
+        <a href="{% url 'natjecaj_delete' pk=natjecaj.pk %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">Nema dostupnih natjecaja.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{% url 'natjecaj_create' %}">Dodaj novi natjecaj</a></p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<table style="text-align: left;">
+  <tr>
+    <th>Prijava: </th>
+    <td>{{ prijava.prijava_broj }}</td></br>
+  </tr>
+  <tr>
+    <th>Natjecaj: </th>
+    <td>{{ prijava.prijava_natjecaj }}</td>
+  </tr>
+  <tr>
+    <th>Sudionik: </th>
+    <td>{{ prijava.prijava_sudionik }}</td>
+  </tr>
+</table>
+
+<p><a href="{% url 'prijava_list' %}">Natrag na prijave</a></p>
+{% endblock %}

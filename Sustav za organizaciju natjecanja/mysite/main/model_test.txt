@@ -1,0 +1,49 @@
+from django.test import TestCase
+from .models import Organizator, Sudionik, Natjecaj, Prijava
+from datetime import date
+
+
+class OrganizatorModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Organizator.objects.create(organizator_naziv='Organizator1', organizator_email='organizator1@example.com')
+
+    def test_organizator_str(self):
+        org = Organizator.objects.get(id=1)
+        self.assertEqual(str(org), 'Organizator1')
+
+
+class SudionikModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Sudionik.objects.create(sudionik_naziv='Sudionik1', sudionik_email='sudionik1@example.com')
+
+    def test_sudionik_str(self):
+        sud = Sudionik.objects.get(id=1)
+        self.assertEqual(str(sud), 'Sudionik1')
+
+
+class NatjecajModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        org = Organizator.objects.create(organizator_naziv='Organizator1', organizator_email='organizator1@example.com')
+        sud = Sudionik.objects.create(sudionik_naziv='Sudionik1', sudionik_email='sudionik1@example.com')
+        nat = Natjecaj.objects.create(natjecaj_naziv='Natjecaj1', natjecaj_datum=date.today(), natjecaj_organizator=org)
+        nat.natjecaj_sudionici.add(sud)
+
+    def test_natjecaj_str(self):
+        nat = Natjecaj.objects.get(id=1)
+        self.assertEqual(str(nat), 'Natjecaj1')
+
+
+class PrijavaModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        org = Organizator.objects.create(organizator_naziv='Organizator1', organizator_email='organizator1@example.com')
+        sud = Sudionik.objects.create(sudionik_naziv='Sudionik1', sudionik_email='sudionik1@example.com')
+        nat = Natjecaj.objects.create(natjecaj_naziv='Natjecaj1', natjecaj_datum=date.today(), natjecaj_organizator=org)
+        Prijava.objects.create(prijava_natjecaj=nat, prijava_sudionik=sud, prijava_broj=1)
+
+    def test_prijava_str(self):
+        prij = Prijava.objects.get(id=1)
+        self.assertEqual(str(prij), 'Sudionik1\'s entry for Natjecaj1')

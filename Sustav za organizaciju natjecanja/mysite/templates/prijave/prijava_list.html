@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+
+
+
+{% block content %}
+  <!-- <h1>Prijave</h1> -->
+  <table class="table" style="border-spacing: 10px; border-collapse: collapse;">
+    <thead style="text-align: left;">
+      <tr>
+        <th>Prijava</th>
+        <th>Natjecaj</th>
+        <th>Sudionik</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prijava in prijave %}
+        <tr>
+          <td style="padding-right: 70px;">{{ prijava.prijava_broj }}</td>
+          <td style="padding-right: 40px;">{{ prijava.prijava_natjecaj.natjecaj_naziv }}</td>
+          <td style="padding-right: 40px;">{{ prijava.prijava_sudionik.sudionik_naziv }}</td>
+          <td>
+            <a href="{% url 'prijava_detail' prijava.pk %}">Detail</a>
+            <a href="{% url 'prijava_update' prijava.pk %}">Update</a>
+            <a href="{% url 'prijava_delete' prijava.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">Nema prijava</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p><a href="{% url 'prijava_create' %}">Dodaj novu prijavu</a></p>
+{% endblock %}

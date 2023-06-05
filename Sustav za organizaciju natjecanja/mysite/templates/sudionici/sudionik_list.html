@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+<!-- <h1>Sudionici</h1> -->
+<table>
+  <thead style="text-align: left;">
+    <tr>
+      <th>Naziv</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sudionik in sudionici %}
+      <tr>
+        <td style="padding-right: 40px;">{{ sudionik.sudionik_naziv }}</td>
+        <td style="padding-right: 40px;">{{ sudionik.sudionik_email }}</td>
+        <td>
+          <a href="{% url 'sudionik_detail' sudionik.pk %}">Detail</a>
+          <a href="{% url 'sudionik_update' sudionik.pk %}">Update</a>
+          <a href="{% url 'sudionik_delete' sudionik.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{% url 'sudionik_create' %}">Dodaj novog sudionika</a></p>
+{% endblock %}

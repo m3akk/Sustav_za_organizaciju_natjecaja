@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<p>Are you sure you want to delete organizator "{{ organizator.organizator_naziv }}"?</p>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+  <a href="{% url 'organizator_list' %}">Cancel</a>
+</form>
+{% endblock %}

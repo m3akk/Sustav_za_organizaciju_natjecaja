@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<p>Are you sure you want to delete prijava "{{ prijava.prijava_broj }}"?</p>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+  <a href="{% url 'prijava_list' %}">Cancel</a>
+</form>
+
+{% endblock %}
+
+

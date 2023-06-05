@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<!-- <h2>{{ natjecaj.natjecaj_naziv }}</h2> -->
+
+<p><strong>Naziv:</strong> {{ natjecaj.natjecaj_naziv }}</p>
+
+<p><strong>Datum:</strong> {{ natjecaj.natjecaj_datum }}</p>
+
+<p><strong>Organizator:</strong> {{ natjecaj.natjecaj_organizator }}</p>
+
+<p><strong>Sudionici:</strong>
+  {% for sudionik in natjecaj.natjecaj_sudionici.all %}
+  {{ sudionik.sudionik_naziv }}{% if not forloop.last %}, {% endif %}
+  {% endfor %}
+</p>
+
+<p><a href="{% url 'natjecaj_list' %}">Natrag na Natjecaje</a></p>
+{% endblock %}

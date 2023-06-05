@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<p>Are you sure you want to delete natjecaj"{{ natjecaj.natjecaj_naziv }}"?</p>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+  <a href="{% url 'natjecaj_list' %}">Cancel</a>
+</form>
+{% endblock %}

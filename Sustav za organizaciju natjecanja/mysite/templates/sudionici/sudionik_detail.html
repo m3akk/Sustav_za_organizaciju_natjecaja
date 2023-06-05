@@ -1,0 +1,20 @@
+
+{% extends "index.html" %}
+
+
+{% block content %}
+
+
+<table style="text-align: left;">
+  <tr>
+    <th>Naziv: </th>
+    <td>{{ sudionik.sudionik_naziv }}</td>
+  </tr>
+  <tr>
+    <th>Email: </th>
+    <td>{{ sudionik.sudionik_email }}</td>
+  </tr>
+</table>
+
+<p><a href="{% url 'sudionik_list' %}">Back to Sudionici</a></p>
+{% endblock %}

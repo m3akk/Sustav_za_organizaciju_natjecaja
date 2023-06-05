@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+
+<p>Are you sure you want to delete sudionik "{{ sudionik.sudionik_naziv }}"?</p>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+  <a href="{% url 'sudionik_list' %}">Cancel</a>
+</form>
+{% endblock %}
